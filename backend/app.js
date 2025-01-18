@@ -1,5 +1,5 @@
 import express from 'express';
-import { loginUser, createUser } from './routes/auth.js';
+import { loginUser, createUser, enforceAuth } from './middleware/auth.js';
 import { generateImage } from './middleware/image.js';
 
 const app = express();
@@ -41,10 +41,11 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.post('/generate-image', async (req, res) => {
-  const { promt, options } = req.body; //options => aspect ratio, format, quality
-  await generateImage(promt, options);
-  res.status(201).send({message: 'Image generated'})
+app.post('/generate-image', enforceAuth, async (req, res) => {
+  const { prompt, options } = req.body; //options => aspect ratio, format, quality
+  const {image, format} = await generateImage(prompt, options);
+  res.type(format);
+  res.status(201).send(image);
 });
 
 const port = process.env.PORT || 3000;

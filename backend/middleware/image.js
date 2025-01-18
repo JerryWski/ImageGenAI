@@ -6,8 +6,7 @@ const replicate = new Replicate({
 
 export async function generateImage(prompt, options) {
   const input = {
-    prompt:
-      'akira toriyama style, son goku and others heroes together at the beach',
+    prompt,
     aspect_ratio: options.aspect_ratio || '1:1',
     output_format: options.output_format || 'webp',
     output_quality: options.output_quality || 80,
@@ -15,8 +14,16 @@ export async function generateImage(prompt, options) {
     prompt_upsampling: true,
   };
 
-  const output = await replicate.run('black-forest-labs/flux-1.1-pro', {
+  const output = await replicate.run('black-forest-labs/flux-schnell', {
     input,
   });
-  console.log(output);
+  const outputStream = output[0];
+  console.log(outputStream);
+
+  const imageBlob = await outputStream.blob();
+  const imageBuffer = await imageBlob.arrayBuffer();
+  const image = Buffer.from(imageBuffer); //then we can receive responde from the server
+  
+  return { image, format: imageBlob.type};
+  
 }
