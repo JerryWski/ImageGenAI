@@ -1,5 +1,5 @@
 import express from 'express';
-import { loginUser, createUser } from './auth.js';
+import { loginUser, createUser } from './routes/auth.js';
 
 const app = express();
 app.use(express.json());

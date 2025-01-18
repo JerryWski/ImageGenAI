@@ -1,52 +1,26 @@
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
-const User = require('../models/user');
-const router = express.Router();
+import bcrypt from 'bcryptjs';
+import db from '../db.js';
+import jwt from 'jsonwebtoken';
 
-router.post('/signup', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    
-    if (password.length < 7) {
-      return res.status(400).send({ error: 'Password must be at least 7 characters long' });
-    }
+const secretKey = process.env.JWT_SECRET_KEY;
 
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      return res.status(400).send({ error: 'Email already exists' });
-    }
+export function createUser(email, password) {
+  const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
 
-    const hashedPassword = await bcrypt.hash(password, 8);
-    const user = new User({ email, password: hashedPassword });
-    await user.save();
-
-    const token = jwt.sign({ userId: user._id }, 'your_jwt_secret', { expiresIn: '24h' });
-    res.status(201).send({ token });
-  } catch (error) {
-    res.status(400).send({ error: error.message });
+  if (user) {
+    throw new Error('User creation failed, invalid credentials');
   }
-});
 
-router.post('/login', async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
-    
-    if (!user) {
-      return res.status(401).send({ error: 'Invalid credentials' });
-    }
+  const hashedPassword = bcrypt.hashSync(password, 12);
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(401).send({ error: 'Invalid credentials' });
-    }
+  const result = db
+    .prepare('INSERT INTO users (email, password) VALUES (?, ?)')
+    .run(email, hashedPassword);
+  const token = jwt.sign({ id: result.lastInsertRowid }, secretKey, {
+    expiresIn: '1h',
+  });
 
-    const token = jwt.sign({ userId: user._id }, 'your_jwt_secret', { expiresIn: '24h' });
-    res.json({ token });
-  } catch (error) {
-    res.status(400).send({ error: error.message });
-  }
-});
+  return token;
+}
 
-module.exports = router;
+export function loginUser(email, password) {}
