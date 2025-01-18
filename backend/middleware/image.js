@@ -4,7 +4,7 @@ const replicate = new Replicate({
   auth: process.env.REPLICATE_API_TOKEN,
 });
 
-export async function generateImage(promt, options) {
+export async function generateImage(prompt, options) {
   const input = {
     prompt:
       'akira toriyama style, son goku and others heroes together at the beach',

@@ -43,7 +43,8 @@ app.post('/login', async (req, res) => {
 
 app.post('/generate-image', async (req, res) => {
   const { promt, options } = req.body; //options => aspect ratio, format, quality
-  generateImage(promt, options);
+  await generateImage(promt, options);
+  res.status(201).send({message: 'Image generated'})
 });
 
 const port = process.env.PORT || 3000;
