@@ -1,8 +1,14 @@
+import AuthForm from "./components/AuthForm";
+import Header from "./components/Header";
+
 function App() {
   return (
-    <>
-      <p className='text-white text-5xl'>Ściema</p>
-    </>
+    <div className="min-h-screen py-8">
+      <Header />
+      <main className="mt-12 text-stone-50">
+        <AuthForm />
+      </main>
+    </div>
   );
 }
 

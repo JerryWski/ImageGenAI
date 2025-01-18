@@ -16,9 +16,7 @@ html {
 }
 
 body {
-  min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: rgb(10, 9, 9);
+  background-color: rgb(17, 16, 16);
 }
