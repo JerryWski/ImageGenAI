@@ -27,9 +27,10 @@ app.post('/signup', async (req, res) => {
 app.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
-    loginUser(email, password);
+    const token = loginUser(email, password);
+    res.status(200).send({ message: 'User loggded in', token});
   } catch (error) {
-    res.status(400).send({ error: error.message });
+    res.status(400).send({ error: 'Login failed, please check your credentials' });
   }
 });
 

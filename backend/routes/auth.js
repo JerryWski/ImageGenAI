@@ -23,4 +23,14 @@ export function createUser(email, password) {
   return token;
 }
 
-export function loginUser(email, password) {}
+export function loginUser(email, password) {
+  const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
+
+  if (!user || !bcrypt.compareSync(password, user.password)) {
+    throw new Error('Invalid email or password');
+  }
+
+  const token = jwt.sign({ id: user.id }, secretKey, { expiresIn: '1h' });
+
+  return token;
+}
