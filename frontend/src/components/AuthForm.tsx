@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import Form from './Form';
 import InputContainer from './InputContainer';
+import Label from './Label';
+import Input from './Input';
 
 const AuthForm = () => {
   const [authMode, setAuthMode] = useState('login');
@@ -12,16 +14,16 @@ const AuthForm = () => {
   }
 
   return (
-    <Form>
+    <Form className='max-w-[35rem] mx-auto'>
       <InputContainer>
-        <label htmlFor='email'>Emial</label>
-        <input type='email' id='email' />
+        <Label htmlFor='email'>Emial</Label>
+        <Input type='email' id='email' />
       </InputContainer>
       <InputContainer>
-        <label htmlFor='password'>Password</label>
-        <input type='password' id='password' />
+        <Label htmlFor='password'>Password</Label>
+        <Input type='password' id='password' />
       </InputContainer>
-      <p>
+      <p className='flex flex-col gap-3 mt-4'>
         <button>Submit</button>
         <button type='button' onClick={handleSwitchAuthMode}>
           {authMode === 'login'
