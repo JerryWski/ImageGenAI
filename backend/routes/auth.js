@@ -27,7 +27,9 @@ export function loginUser(email, password) {
   const user = db.prepare('SELECT * FROM users WHERE email = ?').get(email);
 
   if (!user || !bcrypt.compareSync(password, user.password)) {
-    throw new Error('Invalid email or password');
+    const error = new Error('Invalid email or password');
+    error.status = 400;
+    throw error;
   }
 
   const token = jwt.sign({ id: user.id }, secretKey, { expiresIn: '1h' });
