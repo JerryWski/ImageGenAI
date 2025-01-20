@@ -2,6 +2,6 @@ POST http://localhost:3000/signup
 Content-Type: application/json
 
 {
-    "email": "test@wp.pl",
-    "password": "test123"
+    "email": "te2st22@wp.pl",
+    "password": "tester1234"
 }
