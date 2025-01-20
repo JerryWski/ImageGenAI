@@ -16,7 +16,7 @@ export function useAuthContext() {
   return authCtx;
 }
 
-export function AuthContetProvider({ children }) {
+export function AuthContextProvider({ children }) {
   const [token, setToken] = useState();
 
   async function signup  (email, password) {
