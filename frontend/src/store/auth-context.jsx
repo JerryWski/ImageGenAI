@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, use } from 'react';
 
 const AuthContext = createContext({
   token: null,
@@ -19,7 +19,7 @@ export function useAuthContext() {
 export function AuthContetProvider({ children }) {
   const [token, setToken] = useState();
 
-  const signup = async (email, password) => {
+  async function signup  (email, password) {
     const response = await fetch('http://localhost:3000/signup', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
