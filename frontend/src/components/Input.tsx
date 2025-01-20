@@ -7,7 +7,8 @@ interface InputProps {
   id:string
 }
 
-const Input = ({ isTextArea, className, ...props }: InputProps) => {
+
+const Input = ({ isTextArea, className, ...props }:InputProps) => {
   const Component = isTextArea ? 'textarea' : 'input';
   return (
     <Component

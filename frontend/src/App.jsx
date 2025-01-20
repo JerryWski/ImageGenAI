@@ -1,6 +1,6 @@
 import AuthForm from "./components/AuthForm";
 import Header from "./components/Header";
-import { AuthContextProvider } from "./store/auth-context";
+import { AuthContextProvider } from "./store/auth-context.jsx";
 
 function App() {
   return (

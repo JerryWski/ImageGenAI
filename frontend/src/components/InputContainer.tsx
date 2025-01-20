@@ -4,7 +4,8 @@ interface FormProps {
   children: ReactNode;
 }
 
-const InputContainer = ({children}: FormProps) => {
+
+const InputContainer = ({children}:FormProps) => {
   return (
     <p className='flex flex-col'>
         {children}

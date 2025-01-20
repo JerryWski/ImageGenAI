@@ -1,11 +1,11 @@
 import { createContext, useState, use } from 'react';
 
 const AuthContext = createContext({
-  token: null,
-  signup: (email, password) => {},
-  login: (email, password) => {},
-  logut: () => {},
-});
+  token:null,
+  signup:(email, password) => {},
+  login:(email, password) => {},
+  logout:() => {},
+})
 
 export function useAuthContext() {
   const authCtx = use(AuthContext);
@@ -13,13 +13,13 @@ export function useAuthContext() {
   if (!authCtx) {
     throw new Error('useAuthContext must be used within AuthContext Provider');
   }
-  return authCtx;
+  return authCtx; 
 }
 
 export function AuthContextProvider({ children }) {
   const [token, setToken] = useState();
 
-  async function signup  (email, password) {
+  async function signup(email, password) {
     const response = await fetch('http://localhost:3000/signup', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
@@ -47,5 +47,6 @@ export function AuthContextProvider({ children }) {
     login,
     logout,
   };
+  
   return <AuthContext value={contextValue}>{children}</AuthContext>;
 }

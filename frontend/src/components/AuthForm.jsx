@@ -3,8 +3,10 @@ import Form from './Form';
 import InputContainer from './InputContainer';
 import Label from './Label';
 import Input from './Input';
+import { useAuthContext}from '../store/auth-context';
 
 const AuthForm = () => {
+  const authCtx = useAuthContext();
   const [authMode, setAuthMode] = useState('login');
 
   function handleSwitchAuthMode() {
@@ -13,8 +15,12 @@ const AuthForm = () => {
     });
   }
 
+  function submitAction(){
+
+  }
+
   return (
-    <Form className='max-w-[35rem] mx-auto'>
+    <Form action={submitAction} className='max-w-[35rem] mx-auto'>
       <InputContainer>
         <Label htmlFor='email'>Emial</Label>
         <Input type='email' id='email' />
