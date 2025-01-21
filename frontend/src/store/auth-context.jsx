@@ -16,8 +16,22 @@ export function useAuthContext() {
   return authCtx; 
 }
 
+function saveToken(token){
+  localStorage.setItem('token', token);
+  localStorage.setItem('tokenExpiration', new Date(Date.now() + 3600 * 1000).toISOString());
+}
+
+const storedToken = localStorage.getItem('token');
+const storedTokenExpiration = localStorage.getItem('tokenExpiration');
+
+let initialToken = null;
+
+if(storedToken && new Date(storedTokenExpiration) > new Date()){
+  initialToken = storedToken;
+}
+
 export function AuthContextProvider({ children }) {
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(initialToken);
 
   async function signup(email, password) {
     const response = await fetch('http://localhost:3000/signup', {
@@ -37,6 +51,7 @@ export function AuthContextProvider({ children }) {
     }
 
     setToken(resData.token);
+    saveToken(resData.token);
   };
 
   async function login(email, password) {
@@ -57,9 +72,14 @@ export function AuthContextProvider({ children }) {
     }
 
     setToken(resData.token);
+    saveToken(resData.token);
   };
 
-  const logout = () => {};
+  const logout = () => {
+    setToken(null);
+    localStorage.removeItem('token');
+    localStorage.removeItem('tokenExpiration');
+  };
 
   const contextValue = {
     token,
