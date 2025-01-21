@@ -4,7 +4,12 @@ interface InputProps {
   className?: string;
   isTextArea?: boolean;
   type: string;
-  id:string
+  id:string;
+  name: string;
+  min: string;
+  max: string;
+  step: string;
+  defaultValue: string;
 }
 
 
