@@ -35,7 +35,7 @@ const {token} = useAuthContext()
     };
     try {
       const imageUrl = await sendImagesRequest(prompt, options, token);
-      return { restult: 'success', imageUrl, prompt };
+      return { result: 'success', imageUrl, prompt };
     } catch (error) {
       return { result: 'error', message: error.message };
     }
@@ -46,7 +46,7 @@ const {token} = useAuthContext()
   });
 
   return (
-    <div className='flex gap-4 max-w-[70rem] mx-auto items-start'>
+    <div className='flex flex-col md:flex-row gap-4 max-w-[70rem] mx-auto items-start'>
       <Form
         action={action}
         className='flex flex-col w-[25rem] justify-between gap-8'
@@ -115,14 +115,14 @@ const {token} = useAuthContext()
           </button>
         </p>
       </Form>
-      <div className='h-[25rem] flex-1 flex justify-center items-center'>
+      <div className='test h-[25rem] w-[25rem] flex-1 flex justify-center items-center'>
         {!formState.result && (
           <p className='text-stone-400 p-8 font-mono'>
             Press "Create" to generate an image
           </p>
         )}
         {formState.result === 'success' && (
-          <img src={formState.imageUrl} alt={prompt} className='h-[25rem] shadow-2xl rounded-md'/>
+          <img src={formState.imageUrl} alt={prompt} className='w-full shadow-2xl rounded-md'/>
         )}
         {formState.result === 'error' && <p className='text-red-200'>{formState.message}</p>}
       </div>
