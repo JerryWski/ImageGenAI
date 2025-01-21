@@ -38,7 +38,27 @@ export function AuthContextProvider({ children }) {
 
     setToken(resData.token);
   };
-  const login = (email, password) => {};
+
+  async function login(email, password) {
+    const response = await fetch('http://localhost:3000/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const resData = await response.json();
+    if (!response.ok) {
+      throw new Error(
+        resData.message ||
+          'Logging failed. Check your credentails please',
+      );
+    }
+
+    setToken(resData.token);
+  };
+
   const logout = () => {};
 
   const contextValue = {

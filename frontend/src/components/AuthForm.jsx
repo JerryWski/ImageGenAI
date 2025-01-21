@@ -25,6 +25,8 @@ const AuthForm = () => {
     try {
       if (authMode === 'signup') {
         await authCtx.signup(email, password);
+      } else {
+        await authCtx.login(email, password);
       }
     } catch (error) {
       setError(error.message);
