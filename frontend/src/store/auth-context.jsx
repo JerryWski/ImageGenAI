@@ -34,7 +34,7 @@ export function AuthContextProvider({ children }) {
   const [token, setToken] = useState(initialToken);
 
   async function signup(email, password) {
-    const response = await fetch('http://localhost:3000/signup', {
+    const response = await fetch('http://localhost:10000/signup', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {
@@ -55,7 +55,7 @@ export function AuthContextProvider({ children }) {
   };
 
   async function login(email, password) {
-    const response = await fetch('http://localhost:3000/login', {
+    const response = await fetch('http://localhost:10000/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {
