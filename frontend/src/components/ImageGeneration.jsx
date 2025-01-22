@@ -106,14 +106,14 @@ const {token} = useAuthContext()
             </InputContainer>
           </div>
         </div>
-        <p className='flex justify-end'>
+        <div className='flex justify-end '>
           <button
             disabled={isPending}
-            className='bg-sky-400 text-black py-3 rounded-lg hover:bg-sky-500 disabled:cursor-not-allowed disabled:bg-stone-400'
+            className='bg-sky-400 min-w-[10rem] text-black py-3 rounded-lg hover:bg-sky-500 disabled:cursor-not-allowed disabled:bg-stone-400'
           >
             {isPending ? 'Generating...' : 'Generate'}
           </button>
-        </p>
+        </div>
       </Form>
       <div className='test h-[25rem] w-[25rem] flex-1 flex justify-center items-start'>
         {!formState.result && (
@@ -122,7 +122,7 @@ const {token} = useAuthContext()
           </p>
         )}
         {formState.result === 'success' && (
-          <img src={formState.imageUrl} alt={prompt} className='w-full shadow-2xl rounded-md'/>
+          <img src={formState.imageUrl} alt={formState.prompt} className='w-full shadow-2xl rounded-md'/>
         )}
         {formState.result === 'error' && <p className='text-red-200'>{formState.message}</p>}
       </div>

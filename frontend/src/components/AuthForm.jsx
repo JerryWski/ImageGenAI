@@ -38,7 +38,7 @@ const AuthForm = () => {
   return (
     <Form action={action} className='max-w-[35rem] mx-auto'>
       <InputContainer>
-        <Label htmlFor='email'>Emial</Label>
+        <Label htmlFor='email'>Email</Label>
         <Input type='email' id='email' name='email' />
       </InputContainer>
       <InputContainer>
@@ -51,8 +51,8 @@ const AuthForm = () => {
           disabled={isPending}
           className='bg-sky-400 text-black py-2 rounded-lg hover:bg-sky-500 disabled:cursor-not-allowe disabled:bg-stone-400 disabled:text-stone-600'
         >
-          {!isPending && authMode === 'login' ? 'Log in' : 'Sign up'};
-          {isPending && ' Submitting...'}
+          {!isPending && authMode === 'login' ? 'Log in' : 'Sign up'}
+          {isPending && 'Submitting...'}
         </button>
         <button
           disabled={isPending}
