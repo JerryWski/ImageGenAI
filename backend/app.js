@@ -4,6 +4,7 @@ import { loginUser, createUser, enforceAuth } from './middleware/auth.js';
 import { generateImage } from './middleware/image.js';
 import cors from 'cors';
 
+
 const app = express();
 dotenv.config();
 // "start": "node --env-file=.env app.js",
@@ -69,5 +70,5 @@ app.post('/generate-image', enforceAuth, async (req, res) => {
   res.status(201).send(image);
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 10000;
 app.listen(port, () => console.log(`Server running on port ${port} `));
