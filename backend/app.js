@@ -15,12 +15,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 app.use(express.json());
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-//   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//   next();
-// })
+
 
 app.post('/signup', async (req, res) => {
   try {
@@ -60,6 +55,12 @@ app.post('/login', async (req, res) => {
 
 app.post('/generate-image', enforceAuth, async (req, res) => {
   const { prompt, options } = req.body; //options => aspect ratio, format, quality
+
+  if(!prompt || prompt.trim().length === 0) {
+    return res.status(400).send({ error: 'Prompt is required' });
+  }
+
+
   const { image, format } = await generateImage(prompt, options);
   res.type(format);
   res.status(201).send(image);

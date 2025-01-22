@@ -16,7 +16,7 @@ async function sendImagesRequest(prompt, options, authToken) {
   });
 
   if (!response.ok) {
-    throw new Error('Failed to generated image');
+    throw new Error('Failed to generated image, check your input please');
   }
 
   const imageBlob = await response.blob();
@@ -115,7 +115,7 @@ const {token} = useAuthContext()
           </button>
         </p>
       </Form>
-      <div className='test h-[25rem] w-[25rem] flex-1 flex justify-center items-center'>
+      <div className='test h-[25rem] w-[25rem] flex-1 flex justify-center items-start'>
         {!formState.result && (
           <p className='text-stone-400 p-8 font-mono'>
             Press "Create" to generate an image
