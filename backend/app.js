@@ -1,9 +1,12 @@
+import dotenv from 'dotenv';
 import express from 'express';
 import { loginUser, createUser, enforceAuth } from './middleware/auth.js';
 import { generateImage } from './middleware/image.js';
 import cors from 'cors';
 
 const app = express();
+dotenv.config();
+// "start": "node --env-file=.env app.js",
 
 const corsOptions = {
   origin: 'http://localhost:5173', // Update this to match your frontend URL
