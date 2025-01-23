@@ -5,7 +5,11 @@ export default {
     "./frontend/src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'xs': {'max': '400px'}, // Dodanie breakpointu poniżej 400px
+      },
+    },
   },
   plugins: [],
 }
