@@ -2,23 +2,26 @@ import dotenv from 'dotenv';
 import express from 'express';
 import { loginUser, createUser, enforceAuth } from './middleware/auth.js';
 import { generateImage } from './middleware/image.js';
-import cors from 'cors';
-
+// import cors from 'cors';
 
 const app = express();
 dotenv.config();
 
-const corsOptions = {
-  origin: 'http://localhost:5173', // Update this to match your frontend URL
-  methods: 'POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 204
-};
+// const corsOptions = {
+//   origin: 'http://localhost:5173', // Update this to match your frontend URL
+//   methods: 'POST,DELETE',
+//   credentials: true,
+//   optionsSuccessStatus: 204
+// };
 
-app.use(cors(corsOptions))
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'POST,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+});
 
 app.use(express.json());
-
 
 app.post('/signup', async (req, res) => {
   try {
@@ -59,10 +62,9 @@ app.post('/login', async (req, res) => {
 app.post('/generate-image', enforceAuth, async (req, res) => {
   const { prompt, options } = req.body; //options => aspect ratio, format, quality
 
-  if(!prompt || prompt.trim().length === 0) {
+  if (!prompt || prompt.trim().length === 0) {
     return res.status(400).send({ error: 'Prompt is required' });
   }
-
 
   const { image, format } = await generateImage(prompt, options);
   res.type(format);
