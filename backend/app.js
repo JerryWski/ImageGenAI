@@ -8,14 +8,14 @@ import cors from 'cors';
 const app = express();
 dotenv.config();
 
-// const corsOptions = {
-//   origin: 'http://localhost:5173', // Update this to match your frontend URL
-//   methods: 'POST,DELETE',
-//   credentials: true,
-//   optionsSuccessStatus: 204
-// };
+const corsOptions = {
+  origin: 'http://localhost:5173', // Update this to match your frontend URL
+  methods: 'POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204
+};
 
-app.use(cors())
+app.use(cors(corsOptions))
 
 app.use(express.json());
 

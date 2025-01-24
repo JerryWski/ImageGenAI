@@ -52,7 +52,7 @@ const AuthForm = () => {
           className='bg-sky-400 text-black py-2 rounded-lg hover:bg-sky-500 disabled:cursor-not-allowe disabled:bg-stone-400 disabled:text-stone-600'
         >
           {!isPending && authMode === 'login' ? 'Log in' : 'Sign up'}
-          {isPending && 'Submitting...'}
+          {isPending && ' Submitting...'}
         </button>
         <button
           disabled={isPending}
@@ -60,8 +60,8 @@ const AuthForm = () => {
           onClick={handleSwitchAuthMode}
         >
           {authMode === 'login'
-            ? 'Create a new User'
-            : 'I already have an account, log in instead'}
+            ? 'Create a new User ->'
+            : 'I already have an account, log in instead ->'}
         </button>
       </p>
     </Form>
