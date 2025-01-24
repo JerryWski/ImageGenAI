@@ -2,7 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import { loginUser, createUser, enforceAuth } from './middleware/auth.js';
 import { generateImage } from './middleware/image.js';
-// import cors from 'cors';
+import cors from 'cors';
 
 const app = express();
 dotenv.config();
