@@ -16,7 +16,7 @@ const Gallery = () => {
   ];
 
   return (
-    <div className='container mx-auto max-w-[1100px] max-h-[700px] overflow-hidden px-4 py-8'>
+    <div className='container mx-auto max-w-[1100px] max-h-[700px] overflow-hidden mt-40 px-4 py-8'>
       <h1 className='text-2xl font-bold text-center mb-6'>Masonry Gallery</h1>
       <div className='columns-2 xs:columns-1 sm:columns-3'>
         {images.map((image, index) => (
