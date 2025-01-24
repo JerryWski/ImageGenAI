@@ -6,7 +6,7 @@ import { useActionState } from 'react';
 import { useAuthContext } from '../store/auth-context';
 
 async function sendImagesRequest(prompt, options, authToken) {
-  const response = await fetch('http://localhost:10000/generate-image', {
+  const response = await fetch('http://localhost:3000/generate-image', {
     method: 'POST',
     body: JSON.stringify({ prompt, options }),
     headers: {
