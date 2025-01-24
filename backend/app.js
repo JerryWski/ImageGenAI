@@ -11,7 +11,8 @@ const corsOptions = {
   origin: 'http://localhost:5173', // URL Twojego frontendu
   methods: ['POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  credentials: true,
+  optionsSuccessStatus: 204
 };
 
 app.use(cors(corsOptions));
