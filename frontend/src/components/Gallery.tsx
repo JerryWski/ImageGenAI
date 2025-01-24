@@ -1,14 +1,14 @@
 const Gallery = () => {
   const images = [
-    '/frontend/src/assets/img2.webp',
-    '/frontend/src/assets/img1.webp',
-    '/frontend/src/assets/img3.webp',
-    '/frontend/src/assets/img1.webp',
-    '/frontend/src/assets/img3.webp',
-    '/frontend/src/assets/img2.webp',
-    '/frontend/src/assets/img3.webp',
-    '/frontend/src/assets/img1.webp',
-    '/frontend/src/assets/img2.webp',
+    './frontend/src/assets/img2.webp',
+    './frontend/src/assets/img1.webp',
+    './frontend/src/assets/img3.webp',
+    './frontend/src/assets/img1.webp',
+    './frontend/src/assets/img3.webp',
+    './frontend/src/assets/img2.webp',
+    './frontend/src/assets/img3.webp',
+    './frontend/src/assets/img1.webp',
+    './frontend/src/assets/img2.webp',
     
   ];
 
