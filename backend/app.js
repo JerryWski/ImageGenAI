@@ -7,20 +7,14 @@ import { generateImage } from './middleware/image.js';
 const app = express();
 dotenv.config();
 
-// const corsOptions = {
-//   origin: 'http://localhost:5173', // Update this to match your frontend URL
-//   methods: 'POST,DELETE',
-//   credentials: true,
-//   optionsSuccessStatus: 204
-// };
+const corsOptions = {
+  origin: 'http://localhost:5173', // URL Twojego frontendu
+  methods: ['POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'POST,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
-  res.header('Access-Control-Allow-Credentials', 'true');
-  next()
-});
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
