@@ -7,15 +7,14 @@ import cors from 'cors';
 const app = express();
 dotenv.config();
 
-// const corsOptions = {
-//   origin: 'http://localhost:5173', // URL Twojego frontendu
-//   methods: ['POST', 'OPTIONS'],
-//   allowedHeaders: ['Content-Type', 'Authorization'],
-//   credentials: true,
-//   optionsSuccessStatus: 204
-// };
+const corsOptions = {
+  origin: ['http://localhost:5173', 'https://imagegenai-5hdx.onrender.com/'], // Domena frontendu
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+};
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(express.json());
 
