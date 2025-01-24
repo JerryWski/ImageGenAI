@@ -39,7 +39,9 @@ export function AuthContextProvider({ children }) {
       body: JSON.stringify({ email, password }),
       headers: {
         'Content-Type': 'application/json',
+        
       },
+      credentials: 'include',
     });
 
     const resData = await response.json();
