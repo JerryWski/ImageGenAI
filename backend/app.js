@@ -8,10 +8,11 @@ const app = express();
 dotenv.config();
 
 const corsOptions = {
-  origin: ['http://localhost:5173', 'https://imagegenai-5hdx.onrender.com/'], // Domena frontendu
+  origin: ['http://localhost:5173'], // Domena frontendu
   methods: ['POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
+  optionsSuccessStatus: 200,
 };
 
 

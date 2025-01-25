@@ -31,11 +31,10 @@ if(storedToken && new Date(storedTokenExpiration) > new Date()){
 }
 
 export function AuthContextProvider({ children }) {
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
   const [token, setToken] = useState(initialToken);
 
   async function signup(email, password) {
-    const response = await fetch(`${API_URL}/signup`, {
+    const response = await fetch('http://localhost:3000/signup', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {
@@ -44,20 +43,21 @@ export function AuthContextProvider({ children }) {
       },
       credentials: 'include',
     });
+
     const resData = await response.json();
     if (!response.ok) {
       throw new Error(
         resData.message ||
-        'Creating a user failed. Check your credentails please',
+          'Creating a user failed. Check your credentails please',
       );
     }
-    
+
     setToken(resData.token);
     saveToken(resData.token);
   };
 
   async function login(email, password) {
-    const response = await fetch(`${API_URL}/login`, {
+    const response = await fetch('http://localhost:3000/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {
