@@ -10,7 +10,7 @@ dotenv.config();
 app.use(express.json());
 
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173', // Domena frontendu
+  origin:  'http://localhost:5173', // Domena frontendu
   methods: ['POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
