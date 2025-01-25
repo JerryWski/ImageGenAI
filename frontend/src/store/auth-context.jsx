@@ -56,7 +56,7 @@ export function AuthContextProvider({ children }) {
   };
 
   async function login(email, password) {
-    const response = await fetch('http://https://imagegenai-5hdx.onrender.com/login/login', {
+    const response = await fetch('http://https://imagegenai-5hdx.onrender.com/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {
