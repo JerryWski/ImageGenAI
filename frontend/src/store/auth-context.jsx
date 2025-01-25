@@ -31,7 +31,7 @@ if(storedToken && new Date(storedTokenExpiration) > new Date()){
 }
 
 export function AuthContextProvider({ children }) {
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000';
   const [token, setToken] = useState(initialToken);
 
   async function signup(email, password) {
@@ -44,15 +44,14 @@ export function AuthContextProvider({ children }) {
       },
       credentials: 'include',
     });
-
     const resData = await response.json();
     if (!response.ok) {
       throw new Error(
         resData.message ||
-          'Creating a user failed. Check your credentails please',
+        'Creating a user failed. Check your credentails please',
       );
     }
-
+    
     setToken(resData.token);
     saveToken(resData.token);
   };
