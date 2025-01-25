@@ -31,10 +31,11 @@ if(storedToken && new Date(storedTokenExpiration) > new Date()){
 }
 
 export function AuthContextProvider({ children }) {
+  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000';
   const [token, setToken] = useState(initialToken);
 
   async function signup(email, password) {
-    const response = await fetch('http://localhost:3000/signup', {
+    const response = await fetch(`${API_URL}/signup`, {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {
@@ -57,7 +58,7 @@ export function AuthContextProvider({ children }) {
   };
 
   async function login(email, password) {
-    const response = await fetch('http://localhost:3000/login', {
+    const response = await fetch(`${API_URL}/login`, {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: {
