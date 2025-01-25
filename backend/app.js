@@ -10,7 +10,7 @@ dotenv.config();
 app.use(express.json());
 
 const corsOptions = {
-  origin:  '*', // Domena frontendu
+  origin:  'https://imagegenai-1.onrender.com/', // Domena frontendu
   methods: ['POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -53,7 +53,7 @@ app.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
     const token = loginUser(email, password);
-    res.status(200).send({ message: 'User loggded in', token });
+    res.status(200).json({ message: 'User loggded in', token });
   } catch (error) {
     if (error.status === 400) {
       return res
