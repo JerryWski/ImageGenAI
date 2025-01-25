@@ -10,7 +10,7 @@ dotenv.config();
 app.use(express.json());
 
 const corsOptions = {
-  origin:  '*', // Domena frontendu
+  origin:  'https://imagegenai-1.onrender.com', // Domena frontendu
   methods: ['POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
